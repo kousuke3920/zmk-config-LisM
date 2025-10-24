@@ -1,0 +1,15 @@
+# .github/workflows/build-firmware.yml
+name: Build ZMK firmware org
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    uses: ./.github/workflows/build-user-config-local.yml
+    with:
+      build_matrix_path: build.yaml
+      config_path: config
+      archive_name: firmware
