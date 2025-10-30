@@ -17,7 +17,7 @@ layers:
   - {t: F, h: LGUI}
   - {t: G, h: LCTRL}
   - {t: H, h: RCTRL}
-  - {t: J, h: RGUI}
+  - J
   - {t: K, h: RSHIFT}
   - {t: L, h: RALT}
   - {t: ;, h: Mark Layer}
