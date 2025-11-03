@@ -390,7 +390,7 @@ path.combo { stroke: #7f7f7f; }
 <path d="M140,140 l95,48" class="combo"/>
 <rect rx="6" ry="6" x="126" y="127" width="28" height="26" class="combo"/>
 <text x="140" y="140" class="combo tap">
-<tspan x="140" dy="-0.6em" style="font-size: 64%">LANG</tspan><tspan x="140" dy="1.2em" style="font-size: 64%">ZENKAKUHAN…</tspan>
+<tspan x="140" dy="-0.6em">Ctl+</tspan><tspan x="140" dy="1.2em">SPACE</tspan>
 </text>
 </g>
 </g>
@@ -649,7 +649,7 @@ path.combo { stroke: #7f7f7f; }
 <path d="M140,140 l95,48" class="combo"/>
 <rect rx="6" ry="6" x="126" y="127" width="28" height="26" class="combo"/>
 <text x="140" y="140" class="combo tap">
-<tspan x="140" dy="-0.6em" style="font-size: 64%">LANG</tspan><tspan x="140" dy="1.2em" style="font-size: 64%">ZENKAKUHAN…</tspan>
+<tspan x="140" dy="-0.6em">Ctl+</tspan><tspan x="140" dy="1.2em">SPACE</tspan>
 </text>
 </g>
 </g>
@@ -913,7 +913,7 @@ path.combo { stroke: #7f7f7f; }
 <path d="M140,140 l95,48" class="combo"/>
 <rect rx="6" ry="6" x="126" y="127" width="28" height="26" class="combo"/>
 <text x="140" y="140" class="combo tap">
-<tspan x="140" dy="-0.6em" style="font-size: 64%">LANG</tspan><tspan x="140" dy="1.2em" style="font-size: 64%">ZENKAKUHAN…</tspan>
+<tspan x="140" dy="-0.6em">Ctl+</tspan><tspan x="140" dy="1.2em">SPACE</tspan>
 </text>
 </g>
 </g>
@@ -1159,7 +1159,7 @@ path.combo { stroke: #7f7f7f; }
 <path d="M140,140 l95,48" class="combo"/>
 <rect rx="6" ry="6" x="126" y="127" width="28" height="26" class="combo"/>
 <text x="140" y="140" class="combo tap">
-<tspan x="140" dy="-0.6em" style="font-size: 64%">LANG</tspan><tspan x="140" dy="1.2em" style="font-size: 64%">ZENKAKUHAN…</tspan>
+<tspan x="140" dy="-0.6em">Ctl+</tspan><tspan x="140" dy="1.2em">SPACE</tspan>
 </text>
 </g>
 </g>
@@ -1406,7 +1406,7 @@ path.combo { stroke: #7f7f7f; }
 <path d="M140,140 l95,48" class="combo"/>
 <rect rx="6" ry="6" x="126" y="127" width="28" height="26" class="combo"/>
 <text x="140" y="140" class="combo tap">
-<tspan x="140" dy="-0.6em" style="font-size: 64%">LANG</tspan><tspan x="140" dy="1.2em" style="font-size: 64%">ZENKAKUHAN…</tspan>
+<tspan x="140" dy="-0.6em">Ctl+</tspan><tspan x="140" dy="1.2em">SPACE</tspan>
 </text>
 </g>
 </g>
@@ -1646,7 +1646,7 @@ path.combo { stroke: #7f7f7f; }
 <path d="M140,140 l95,48" class="combo"/>
 <rect rx="6" ry="6" x="126" y="127" width="28" height="26" class="combo"/>
 <text x="140" y="140" class="combo tap">
-<tspan x="140" dy="-0.6em" style="font-size: 64%">LANG</tspan><tspan x="140" dy="1.2em" style="font-size: 64%">ZENKAKUHAN…</tspan>
+<tspan x="140" dy="-0.6em">Ctl+</tspan><tspan x="140" dy="1.2em">SPACE</tspan>
 </text>
 </g>
 </g>
@@ -1888,7 +1888,7 @@ path.combo { stroke: #7f7f7f; }
 <path d="M140,140 l95,48" class="combo"/>
 <rect rx="6" ry="6" x="126" y="127" width="28" height="26" class="combo"/>
 <text x="140" y="140" class="combo tap">
-<tspan x="140" dy="-0.6em" style="font-size: 64%">LANG</tspan><tspan x="140" dy="1.2em" style="font-size: 64%">ZENKAKUHAN…</tspan>
+<tspan x="140" dy="-0.6em">Ctl+</tspan><tspan x="140" dy="1.2em">SPACE</tspan>
 </text>
 </g>
 </g>
@@ -2132,7 +2132,7 @@ path.combo { stroke: #7f7f7f; }
 <path d="M140,140 l95,48" class="combo"/>
 <rect rx="6" ry="6" x="126" y="127" width="28" height="26" class="combo"/>
 <text x="140" y="140" class="combo tap">
-<tspan x="140" dy="-0.6em" style="font-size: 64%">LANG</tspan><tspan x="140" dy="1.2em" style="font-size: 64%">ZENKAKUHAN…</tspan>
+<tspan x="140" dy="-0.6em">Ctl+</tspan><tspan x="140" dy="1.2em">SPACE</tspan>
 </text>
 </g>
 </g>
@@ -2374,7 +2374,7 @@ path.combo { stroke: #7f7f7f; }
 <path d="M140,140 l95,48" class="combo"/>
 <rect rx="6" ry="6" x="126" y="127" width="28" height="26" class="combo"/>
 <text x="140" y="140" class="combo tap">
-<tspan x="140" dy="-0.6em" style="font-size: 64%">LANG</tspan><tspan x="140" dy="1.2em" style="font-size: 64%">ZENKAKUHAN…</tspan>
+<tspan x="140" dy="-0.6em">Ctl+</tspan><tspan x="140" dy="1.2em">SPACE</tspan>
 </text>
 </g>
 </g>

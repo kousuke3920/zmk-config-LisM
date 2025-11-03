@@ -409,4 +409,4 @@ combos:
 - p: [29, 28]
   k: Ctl+RIGHT SHIFT
 - p: [10, 34]
-  k: LANG ZENKAKUHANKAKU
+  k: Ctl+SPACE
