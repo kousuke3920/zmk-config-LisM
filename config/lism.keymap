@@ -6,129 +6,317 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
+#define ARROW_NUM 1
+#define ARROW_SIGN 2
+#define FUNCTION 3
+#define MOUSE 4
+#define SCROLL 5
+#define MOUSE_RIGHT 7
+#define MOUSE_LEFT 8
+
 &mt {
-    tapping-term-ms = <300>;
-    flavor = "balanced";
+    flavor = "hold-preferred";
+    quick-tap-ms = <300>;
+    tapping-term-ms = <200>;
 };
 
-&lt { quick-tap-ms = <300>; };
+&lt {
+    flavor = "hold-preferred";
+    quick-tap-ms = <300>;
+    tapping-term-ms = <200>;
+};
+
+// 移植元: LiNEA40.keymap（ポインティング設定保持）
+
+&mmv {
+    delay-ms = <20>;
+    trigger-period-ms = <5>;
+    time-to-max-speed-ms = <100>;
+    acceleration-exponent = <2>;
+};
+
+&msc {
+    delay-ms = <3>;
+    trigger-period-ms = <3>;
+    time-to-max-speed-ms = <100>;
+    acceleration-exponent = <0>;
+};
 
 / {
-    macros {
-        emoji: emoji_macro {
-            compatible = "zmk,behavior-macro";
-            label = "EMOJI";
-            #binding-cells = <0>;
-            bindings =
-                <&macro_press>,
-                <&kp CAPSLOCK>,
-                <&macro_tap>,
-                <&kp E>,
-                <&macro_release>,
-                <&kp CAPSLOCK>;
+    input_processors {
+        zip_wheel_scaler: zip_wheel_scaler {
+            compatible = "zmk,input-processor-scaler";
+            #input-processor-cells = <2>;
+            type = <INPUT_EV_REL>;
+            codes = <INPUT_REL_WHEEL>;
+            track-remainders;
         };
     };
+};
 
+&msc_input_listener {
+    speed_up {
+        layers = <FUNCTION>;
+        input-processors = <&zip_wheel_scaler 3 1>;
+    };
+};
+
+&trackball_listener {
+    scroller {
+        layers = <SCROLL>;
+        input-processors =
+            <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
+            <&zip_xy_to_scroll_mapper>;
+    };
+};
+
+// 移植元: LiNEA40.keymap（動作・回転センサ挙動）
+
+/ {
     behaviors {
-        encoder_msc: sensor_rotate_msc {
+        re_kp: sensor_rotate_kp {
+            compatible = "zmk,behavior-sensor-rotate-var";
+            #sensor-binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        mouse_scrl: mouse_wheel_scrl {
             compatible = "zmk,behavior-sensor-rotate-var";
             #sensor-binding-cells = <2>;
             bindings = <&msc>, <&msc>;
 
             tap-ms = <20>;
         };
+    };
+};
 
-        encoder_kp: sensor_rotate_kp {
-            compatible = "zmk,behavior-sensor-rotate-var";
-            #sensor-binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
+// 移植元: Seaside39.keymap（追加ビヘイビア・マクロ）
+
+/ {
+    macros {
+        to_layer_0: to_layer_0 {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
+            label = "TO_LAYER_0";
         };
     };
 
+    behaviors {
+        lt_to_layer_0: lt_to_layer_0 {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LAYER_TAP_TO_0";
+            bindings = <&mo>, <&to_layer_0>;
+
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            quick-tap-ms = <300>;
+            tapping-term-ms = <200>;
+        };
+
+        mt_balanced: mod_tap_balanced {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MOD_TAP_BALANCED";
+            #binding-cells = <2>;
+            tapping-term-ms = <125>;
+            flavor = "balanced";
+            bindings = <&kp>, <&kp>;
+        };
+
+        td_z_shft: tap_dance {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp Z>, <&kp LSHFT>;
+        };
+
+        lt_balanced: lt_balanced {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LT_BALANCED";
+            bindings = <&mo>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+            quick-tap-ms = <200>;
+        };
+    };
+};
+
+// 移植元: LiNEA40 + Seaside39（コンボ統合）
+
+/ {
+    combos {
+        compatible = "zmk,combos";
+
+        // LiNEA40 由来
+
+        PrevClick {
+            bindings = <&mkp MB4>;
+            key-positions = <27 26>;
+        };
+
+        ClickNext {
+            bindings = <&mkp MB5>;
+            key-positions = <28 27>;
+        };
+
+        // Seaside39 由来
+
+        right_ctrl {
+            bindings = <&kp RCTRL>;
+            key-positions = <39 40>;
+        };
+
+        left_ctrl {
+            bindings = <&kp LCTRL>;
+            key-positions = <30 31>;
+        };
+
+        tab {
+            bindings = <&kp TAB>;
+            key-positions = <0 1>;
+        };
+
+        left_ctrl_shift {
+            bindings = <&kp LS(LCTRL)>;
+            key-positions = <20 21>;
+        };
+
+        scroll_rihgt {
+            bindings = <&mo 5>;
+            key-positions = <18 19>;
+        };
+
+        scroll_left {
+            bindings = <&mo 5>;
+            key-positions = <13 14>;
+        };
+
+        MB3_RIGHT {
+            bindings = <&mkp MB3>;
+            key-positions = <17 18>;
+        };
+
+        right_ctrl_shift {
+            bindings = <&kp RC(RIGHT_SHIFT)>;
+            key-positions = <29 28>;
+        };
+
+        ZenkakuHankaku {
+            bindings = <&kp LANG_ZENKAKUHANKAKU>;
+            key-positions = <10 34>;
+        };
+    };
+};
+
+// 移植元: Seaside39.keymap（レイヤーを LiNEA40 物理配置に合わせて移植）
+// 1〜3段目: 5キー + 5キー。4段目: 左6キー + 中央2キー + 右3キー。A/B位置は &trans。
+
+/ {
     keymap {
         compatible = "zmk,keymap";
 
+        // 移植元: Seaside39 default_layer
+
         default_layer {
-            display-name = "Default Layer";
             bindings = <
-&kp Q         &kp W       &kp E         &kp R           &kp T                                      &kp Y        &kp U           &kp I         &kp O       &kp P
-&kp A         &mt LALT S  &mt LSHIFT D  &mt LGUI F      &mt LCTRL G                                &mt RCTRL H  &kp J           &mt RSHIFT K  &mt RALT L  &lt 3 SEMICOLON
-&kp Z         &kp X       &kp C         &kp V           &kp B                                      &kp N        &kp M           &kp COMMA     &kp DOT     &kp SLASH
-&lt 4 DELETE  &tog 1      &lt 1 TAB     &kp LS(LG(N4))  &lt 2 SPACE  &lt 3 ESC    &lt 3 BACKSPACE  &lt 2 ENTER  &kp LS(LG(N4))  &kp F7        &kp F10     &lt 4 F12
+&kp Q                      &kp W         &kp E         &kp R             &kp T                                                 &kp Y        &kp U        &kp I      &kp O     &kp P
+&kp A                      &kp S         &kp D         &kp F             &kp G                                                 &kp H        &kp J        &kp K      &kp L     &kp SEMICOLON
+&mt_balanced LEFT_SHIFT Z  &kp X         &kp C         &kp V             &kp B                                                 &kp N        &kp M        &kp COMMA  &kp DOT   &mt_balanced RIGHT_SHIFT SLASH
+&mo 8                      &kp LEFT_WIN  &kp LEFT_ALT  &lt 3 LANGUAGE_2  &lt_balanced 2 SPACE  &lt 5 LANG1    &lt 2 BACKSPACE  &lt 1 ENTER  &kp LEFT_GUI  &mkp MB1   &mkp MB2  &lt 7 ESCAPE
             >;
 
-            sensor-bindings = <&encoder_msc SCRL_DOWN SCRL_UP>;
+            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
         };
 
-        layer_1 {
-            display-name = "Mouse Layer";
-            bindings = <
-&trans    &trans  &trans  &trans  &trans                    &kp SPACE     &kp RG(LEFT)  &kp RG(RIGHT)  &mkp MB3      &trans
-&mkp MB5  &trans  &trans  &trans  &trans                    &kp LG(UP)    &mkp MB1      &mkp MB2       &msc SCRL_UP  &msc SCRL_DOWN
-&mkp MB4  &trans  &trans  &trans  &trans                    &kp LG(DOWN)  &kp LEFT      &kp UP         &kp RIGHT     &trans
-&trans    &trans  &trans  &trans  &trans  &trans    &trans  &trans        &trans        &kp DOWN       &trans        &kp LG(W)
-            >;
-        };
+        // 移植元: Seaside39 ARROW_NUM
 
-        layer_2 {
-            display-name = "Number Layer";
+        ARROW_NUM {
             bindings = <
-&trans        &kp NUMBER_7       &kp NUMBER_8         &kp NUMBER_9       &kp EQUAL                          &kp F1     &kp F2    &kp F7           &kp F10      &kp RSHIFT
-&kp ASTERISK  &mt LALT NUMBER_4  &mt LSHIFT NUMBER_5  &mt LGUI NUMBER_6  &mt LCTRL MINUS                    &mkp MB1   &kp LEFT  &kp UP           &kp RIGHT    &kp RGUI
-&kp SLASH     &kp NUMBER_1       &kp NUMBER_2         &kp NUMBER_3       &kp PLUS                           &mkp MB2   &none     &kp DOWN         &none        &kp RALT
-&trans        &kp DOT            &kp NUMBER_0         &trans             &kp LANG2        &trans    &trans  &kp LANG1  &trans    &kp RS(RC(TAB))  &kp RC(TAB)  &kp F12
-            >;
-
-            sensor-bindings = <&encoder_kp C_VOL_UP C_VOL_DN>;
-        };
-
-        layer_3 {
-            display-name = "Mark Layer";
-            bindings = <
-&kp LS(LG(N4))  &kp F4   &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &none                        &kp TILDE  &kp EXCLAMATION  &kp AT_SIGN       &kp HASH           &kp DOLLAR
-&emoji          &kp F5   &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &none                        &kp GRAVE  &kp UNDER        &kp SINGLE_QUOTE  &kp DOUBLE_QUOTES  &kp BACKSLASH
-&kp KP_NUMLOCK  &kp F11  &kp LEFT_BRACE        &kp RIGHT_BRACE        &none                        &kp PIPE   &kp PERCENT      &kp CARET         &kp AMPERSAND      &kp ASTERISK
-&trans          &trans   &kp NUMBER_0          &trans                 &kp SPACE  &trans    &trans  &kp ENTER  &trans           &none             &none              &kp F12
+&kp TAB                     &kp N7  &kp N8        &kp N9        &mt ASTERISK EQUAL                              &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp F10       &kp RIGHT_ALT  &kp TAB
+&trans                      &kp N4  &kp N5        &kp N6        &mt PLUS MINUS                                  &kp PAGE_UP           &kp HOME               &kp UP_ARROW  &kp END        &kp COLON
+&mt_balanced LEFT_SHIFT N0  &kp N1  &kp NUMBER_2  &kp NUMBER_3  &mt COMMA DOT                                   &kp PAGE_DOWN         &kp LEFT_ARROW         &kp DOWN      &kp RIGHT      &mt RIGHT_SHIFT SLASH
+&trans                      &trans  &trans        &kp LEFT_ALT  &trans              &kp LEFT_GUI    &kp DELETE  &trans                &trans                 &trans        &trans         &trans
             >;
         };
 
-        layer_4 {
-            display-name = "Device Layer";
+        // 移植元: Seaside39 ARROW_SIGN
+
+        ARROW_SIGN {
             bindings = <
-&none        &none           &none  &none  &bt BT_CLR                  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-&none        &none           &none  &none  &none                       &none         &none         &none         &none         &none
-&sys_reset   &none           &none  &none  &none                       &none         &none         &none         &none         &sys_reset
-&bootloader  &bt BT_CLR_ALL  &none  &none  &none       &none    &none  &none         &none         &none         &none         &bootloader
+&kp LS(EXCL)   &kp LS(AT)          &kp LS(POUND)    &kp LS(DLLR)                 &kp LS(PRCNT)                                       &kp LC(W)          &kp LC(R)     &kp LC(T)         &kp LC(LS(T))  &mt PLUS EQUAL
+&kp LS(CARET)  &kp LS(AMPS)        &kp LS(STAR)     &kp LS(LPAR)                 &kp LS(RPAR)                                        &kp LC(PAGE_UP)    &kp LC(HOME)  &kp LA(UP_ARROW)  &kp LC(END)    &mt UNDER MINUS
+&trans         &mt PIPE BACKSLASH  &mt TILDE GRAVE  &mt LEFT_BRACE LEFT_BRACKET  &mt RIGHT_BRACE RIGHT_BRACKET                       &kp LC(PAGE_DOWN)  &kp LA(LEFT)  &kp LA(DOWN)      &kp LA(RIGHT)  &mt DOUBLE_QUOTES SINGLE_QUOTE
+&trans         &trans              &trans           &trans                       &trans                         &mo 6    &kp DELETE  &trans             &trans        &trans            &trans         &kp LG(L)
             >;
         };
 
-        layer_5 {
-            display-name = "Brank Layer";
+        // 移植元: Seaside39 FUNCTION（レイヤー番号3）
+
+        FUNCTION {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4  &kp N5                         &kp NUMBER_6   &kp N7    &kp N8        &kp N9     &kp N0
+&trans        &kp F2        &kp F3        &kp F4        &kp F5                         &kp PAGE_UP    &kp HOME  &kp UP_ARROW  &kp END    &kp MINUS
+&trans        &kp F7        &kp F8        &kp F9        &kp F10                        &kp PAGE_DOWN  &kp LEFT  &kp DOWN      &kp RIGHT  &trans
+&trans        &trans        &trans        &trans        &trans   &trans    &kp DELETE  &trans         &trans    &trans        &trans     &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
+        };
+
+        // 移植元: Seaside39 MOUSE（レイヤー番号4）
+
+        MOUSE {
+            bindings = <
+&trans  &trans  &trans    &trans    &trans                      &trans  &trans    &trans    &trans    &trans
+&trans  &trans  &mkp MB2  &mkp MB1  &mo 5                       &trans  &mkp MB1  &mkp MB3  &mkp MB2  &mo 5
+&trans  &trans  &trans    &trans    &mkp MB3                    &trans  &trans    &trans    &trans    &trans
+&trans  &trans  &trans    &trans    &trans    &trans    &trans  &trans  &trans    &trans    &trans    &trans
             >;
         };
+
+        // 移植元: Seaside39 SCROLL（レイヤー番号5）
+
+        SCROLL {
+            bindings = <
+&trans  &trans  &trans  &kp LA(F4)  &kp LA(LC(F5))                              &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans      &trans                                      &trans  &trans  &trans  &trans  &kp LG(LC(LEFT_ARROW))
+&trans  &trans  &trans  &trans      &kp LS(LG(RIGHT))                           &trans  &trans  &trans  &trans  &kp LG(LC(RIGHT))
+&trans  &trans  &trans  &trans      &trans             &trans    &kp BACKSPACE  &trans  &trans  &trans  &trans  &kp PRINTSCREEN
+            >;
+        };
+
+        // 移植元: Seaside39 layer_6（レイヤー番号6; Bluetooth）
 
         layer_6 {
-            display-name = "Brank Layer";
             bindings = <
-&trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                    &trans  &trans  &trans  &trans  &trans
+&trans        &trans        &trans        &trans        &trans                          &trans  &trans  &trans  &trans  &trans
+&trans        &trans        &trans        &trans        &trans                          &trans  &trans  &trans  &trans  &trans
+&bt BT_CLR    &trans        &trans        &trans        &trans        &trans    &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
-        layer_7 {
-            display-name = "Brank Layer";
+        // 移植元: Seaside39 MOUSE_RIGHT（レイヤー番号7）
+
+        MOUSE_RIGHT {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&kp LC(Q)             &kp LC(W)  &kp LC(E)  &kp LC(R)  &kp LC(T)                        &kp LC(Y)  &kp LC(U)  &kp LC(I)      &kp LC(O)    &kp LC(P)
+&kp LC(A)             &kp LC(S)  &kp LC(D)  &kp LC(F)  &kp LC(LS(T))                    &kp LC(H)  &mkp MB1   &mkp MB3       &mkp MB2     &kp LC(SEMICOLON)
+&mt LEFT_SHIFT LC(Z)  &kp LC(X)  &kp LC(C)  &kp LC(V)  &kp LC(B)                        &kp LC(N)  &kp LC(M)  &kp LC(COMMA)  &kp LC(DOT)  &kp LC(FSLH)
+&kp LCTRL             &trans     &trans     &trans     &trans         &trans    &trans  &trans     &trans     &trans         &trans       &kp RCTRL
+            >;
+        };
+
+        // 移植元: Seaside39 MOUSE_LEFT（レイヤー番号8）
+
+        MOUSE_LEFT {
+            bindings = <
+&kp LC(Q)  &kp LC(W)  &kp LC(E)  &kp LC(R)  &kp LC(T)                    &kp LC(Y)  &kp LC(U)  &kp LC(I)      &kp LC(O)    &kp LC(P)
+&kp LC(A)  &kp LC(S)  &mkp MB2   &mkp MB1   &mkp MB3                     &kp LC(H)  &kp LC(J)  &kp LC(K)      &kp LC(L)    &kp LC(SEMI)
+&kp LC(Z)  &kp LC(X)  &kp LC(C)  &kp LC(V)  &kp LC(B)                    &kp LC(N)  &kp LC(M)  &kp LC(COMMA)  &kp LC(DOT)  &mt RIGHT_SHIFT LC(SLASH)
+&kp LCTRL  &trans     &trans     &trans     &trans     &trans    &trans  &trans     &trans     &trans         &trans       &kp RCTRL
             >;
         };
     };
