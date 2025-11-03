@@ -1,6 +1,6 @@
 layout: {zmk_keyboard: lism}
 layers:
-  default:
+  Default Layer:
   - Q
   - W
   - E
@@ -12,16 +12,16 @@ layers:
   - O
   - P
   - A
-  - S
-  - D
-  - F
-  - G
-  - H
+  - {t: S, h: LALT}
+  - {t: D, h: LSHIFT}
+  - {t: F, h: LGUI}
+  - {t: G, h: LCTRL}
+  - {t: H, h: RCTRL}
   - J
-  - K
-  - L
-  - ;
-  - {t: Z, h: LEFT SHIFT}
+  - {t: K, h: RSHIFT}
+  - {t: L, h: RALT}
+  - {t: ;, h: Mark Layer}
+  - Z
   - X
   - C
   - V
@@ -30,234 +30,192 @@ layers:
   - M
   - ','
   - .
-  - {t: /, h: RIGHT SHIFT}
-  - MOUSE_LEFT
-  - LEFT WIN
-  - LEFT ALT
-  - {t: LANGUAGE 2, h: '3'}
-  - {t: SPACE, h: ARROW_SIGN}
-  - {t: LANG1, h: '5'}
-  - {t: BS, h: ARROW_SIGN}
-  - {t: ENTER, h: ARROW_NUM}
+  - /
+  - {t: DEL, h: Device Layer}
+  - {t: Mouse Layer, h: toggle}
+  - {t: TAB, h: Mouse Layer}
+  - Sft+Gui+4
+  - {t: SPACE, h: Number Layer}
+  - {t: ESC, h: Mark Layer}
+  - {t: BS, h: Mark Layer}
+  - {t: ENTER, h: Number Layer}
+  - Sft+Gui+4
+  - F7
+  - F10
+  - {t: F12, h: Device Layer}
+  Mouse Layer:
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - SPACE
+  - Gui+←
+  - Gui+→
+  - '&mkp MB3'
+  - {t: ▽, type: trans}
+  - '&mkp MB5'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - Gui+↑
   - '&mkp MB1'
   - '&mkp MB2'
-  - {t: ESCAPE, h: MOUSE_RIGHT}
-  ARROW_NUM:
-  - TAB
-  - '7'
-  - '8'
-  - '9'
-  - {t: '=', h: '*'}
-  - (
-  - )
-  - F10
-  - RIGHT ALT
-  - TAB
+  - '&msc SCRL_UP'
+  - '&msc SCRL_DOWN'
+  - '&mkp MB4'
   - {t: ▽, type: trans}
-  - '4'
-  - '5'
-  - '6'
-  - {t: '-', h: +}
-  - PAGE UP
-  - HOME
-  - UP ARROW
-  - END
-  - ':'
-  - {t: '0', h: LEFT SHIFT}
-  - '1'
-  - '2'
-  - '3'
-  - {t: ., h: ','}
-  - PAGE DOWN
-  - LEFT ARROW
-  - ↓
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - Gui+↓
+  - ←
+  - ↑
   - →
-  - {t: /, h: RIGHT SHIFT}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - LEFT ALT
-  - {t: ▽, type: trans}
-  - LEFT GUI
-  - DEL
-  - {type: held}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  ARROW_SIGN:
-  - Sft+!
-  - Sft+AT
-  - Sft+POUND
-  - Sft+DLLR
-  - Sft+PRCNT
-  - Ctl+W
-  - Ctl+R
-  - Ctl+T
-  - Ctl+Sft+T
-  - {t: '=', h: +}
-  - Sft+^
-  - Sft+AMPS
-  - Sft+STAR
-  - Sft+LPAR
-  - Sft+RPAR
-  - Ctl+PAGE UP
-  - Ctl+HOME
-  - Alt+UP ARROW
-  - Ctl+END
-  - {t: '-', h: _}
-  - {t: ▽, type: trans}
-  - {t: \, h: '|'}
-  - {t: '`', h: '~'}
-  - {t: '[', h: '{'}
-  - {t: ']', h: '}'}
-  - Ctl+PAGE DOWN
-  - Alt+←
-  - Alt+↓
-  - Alt+→
-  - {t: '''', h: '"'}
-  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {type: held}
-  - '6'
-  - DEL
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - Gui+L
-  '3':
-  - '1'
-  - '2'
-  - '3'
-  - '4'
-  - '5'
-  - '6'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ↓
+  - {t: ▽, type: trans}
+  - Gui+W
+  Number Layer:
+  - {t: ▽, type: trans}
   - '7'
   - '8'
   - '9'
+  - '='
+  - F1
+  - F2
+  - F7
+  - F10
+  - RSHIFT
+  - '*'
+  - {t: '4', h: LALT}
+  - {t: '5', h: LSHIFT}
+  - {t: '6', h: LGUI}
+  - {t: '-', h: LCTRL}
+  - '&mkp MB1'
+  - ←
+  - ↑
+  - →
+  - RGUI
+  - /
+  - '1'
+  - '2'
+  - '3'
+  - +
+  - '&mkp MB2'
+  - ''
+  - ↓
+  - ''
+  - RALT
+  - {t: ▽, type: trans}
+  - .
   - '0'
   - {t: ▽, type: trans}
-  - F2
-  - F3
+  - {t: LANG2, type: held}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - LANG1
+  - {t: ▽, type: trans}
+  - Sft+Ctl+TAB
+  - Ctl+TAB
+  - F12
+  Mark Layer:
+  - Sft+Gui+4
   - F4
+  - (
+  - )
+  - ''
+  - '~'
+  - '!'
+  - '@'
+  - '#'
+  - $
+  - '&emoji'
   - F5
-  - PAGE UP
-  - HOME
-  - UP ARROW
-  - END
-  - '-'
-  - {t: ▽, type: trans}
-  - F7
-  - F8
-  - F9
-  - F10
-  - PAGE DOWN
-  - ←
-  - ↓
-  - →
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {type: held}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - DEL
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  '4':
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - '&mkp MB2'
-  - '&mkp MB1'
-  - '5'
-  - {t: ▽, type: trans}
-  - '&mkp MB1'
-  - '&mkp MB3'
-  - '&mkp MB2'
-  - '5'
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - '&mkp MB3'
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  '5':
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - Alt+F4
-  - Alt+Ctl+F5
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - Gui+Ctl+LEFT ARROW
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - Sft+Gui+→
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - Gui+Ctl+→
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {type: held}
-  - BS
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - PRINTSCREEN
-  '6':
+  - '['
+  - ']'
+  - ''
+  - '`'
+  - _
+  - ''''
+  - '"'
+  - {t: \, type: held}
+  - KP NUMLOCK
+  - F11
+  - '{'
+  - '}'
+  - ''
+  - '|'
+  - '%'
+  - ^
+  - '&'
+  - '*'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - '0'
+  - {t: ▽, type: trans}
+  - SPACE
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ENTER
+  - {t: ▽, type: trans}
+  - ''
+  - ''
+  - F12
+  Device Layer:
+  - ''
+  - ''
+  - ''
+  - ''
+  - BT CLR
   - {t: BT, h: '0'}
   - {t: BT, h: '1'}
   - {t: BT, h: '2'}
   - {t: BT, h: '3'}
   - {t: BT, h: '4'}
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - Reset
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - Reset
+  - {t: Boot, type: held}
+  - BT CLR ALL
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - Boot
+  Brank Layer:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -283,49 +241,6 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - BT CLR
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {type: held}
-  - {type: held}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  MOUSE_RIGHT:
-  - Ctl+Q
-  - Ctl+W
-  - Ctl+E
-  - Ctl+R
-  - Ctl+T
-  - Ctl+Y
-  - Ctl+U
-  - Ctl+I
-  - Ctl+O
-  - Ctl+P
-  - Ctl+A
-  - Ctl+S
-  - Ctl+D
-  - Ctl+F
-  - Ctl+Sft+T
-  - Ctl+H
-  - '&mkp MB1'
-  - '&mkp MB3'
-  - '&mkp MB2'
-  - Ctl+;
-  - {t: Ctl+Z, h: LEFT SHIFT}
-  - Ctl+X
-  - Ctl+C
-  - Ctl+V
-  - Ctl+B
-  - Ctl+N
-  - Ctl+M
-  - Ctl+,
-  - Ctl+.
-  - Ctl+FSLH
-  - LCTRL
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -335,39 +250,6 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: RCTRL, type: held}
-  MOUSE_LEFT:
-  - Ctl+Q
-  - Ctl+W
-  - Ctl+E
-  - Ctl+R
-  - Ctl+T
-  - Ctl+Y
-  - Ctl+U
-  - Ctl+I
-  - Ctl+O
-  - Ctl+P
-  - Ctl+A
-  - Ctl+S
-  - '&mkp MB2'
-  - '&mkp MB1'
-  - '&mkp MB3'
-  - Ctl+H
-  - Ctl+J
-  - Ctl+K
-  - Ctl+L
-  - Ctl+SEMI
-  - Ctl+Z
-  - Ctl+X
-  - Ctl+C
-  - Ctl+V
-  - Ctl+B
-  - Ctl+N
-  - Ctl+M
-  - Ctl+,
-  - Ctl+.
-  - {t: Ctl+/, h: RIGHT SHIFT}
-  - {t: LCTRL, type: held}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -376,28 +258,3 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - RCTRL
-combos:
-- p: [27, 26]
-  k: '&mkp MB4'
-- p: [28, 27]
-  k: '&mkp MB5'
-- p: [39, 40]
-  k: RCTRL
-- p: [30, 31]
-  k: LCTRL
-- p: [0, 1]
-  k: TAB
-- p: [20, 21]
-  k: Sft+LCTRL
-- p: [18, 19]
-  k: '5'
-- p: [13, 14]
-  k: '5'
-- p: [17, 18]
-  k: '&mkp MB3'
-- p: [29, 28]
-  k: Ctl+RIGHT SHIFT
-- p: [10, 34]
-  k: LANG ZENKAKUHANKAKU
