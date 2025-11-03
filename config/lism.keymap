@@ -61,6 +61,7 @@
     };
 };
 
+/*
 &trackball_listener {
     scroller {
         layers = <SCROLL>;
@@ -69,6 +70,7 @@
             <&zip_xy_to_scroll_mapper>;
     };
 };
+*/
 
 // 移植元: LiNEA40.keymap（動作・回転センサ挙動）
 
