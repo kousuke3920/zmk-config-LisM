@@ -7,7 +7,7 @@ manifest:
     - name: caksoylar
       url-base: https://github.com/caksoylar
     - name: 4mplelab
-      url-base: https://github.com/4mplelab
+      url-base: https://github.com/kousuke3920
   projects:
     - name: zmk
       remote: zmkfirmware
